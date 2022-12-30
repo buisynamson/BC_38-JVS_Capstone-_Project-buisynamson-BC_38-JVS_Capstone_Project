@@ -1,10 +1,8 @@
 // Variables
 const productSer = new SanPhamService();
 
-
 supFilterType("mobileSelect");
 fetchListProducts();
-getLocalStorage();
 function fetchListProducts() {
   productSer
     .getList()
