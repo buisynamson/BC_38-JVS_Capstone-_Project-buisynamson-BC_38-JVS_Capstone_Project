@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- link boostrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- link CSS -->
+  <link href="./css/styles.css" rel="stylesheet" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Quantico&family=Roboto&family=Varela+Round&display=swap"
+    rel="stylesheet" />
+
+  <link rel="icon" href="./img/sling_bag_96.png" type="image/png" />
+  <title>Best Mobile</title>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="nav-container">
+    <!-- Website nav-menu -->
+    <ul class="nav-web">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Sales</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="./admin.html">Admin</a></li>
+    </ul>
+  </nav>
+  <!-- Main -->
+  <main>
+    <!-- Header -->
+    <header class="header">
+      <h1 class="company-name">Mobile Store</h1>
+      <div class="header-spans">
+        <span class="search"><i class="fas fa-search"></i><input type="text" id="search-input"
+            placeholder="Search here:" oninput="search(event)" />
+        </span>
+        <span class="filter">
+          <div class=" form-group d-flex mt-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+            <select name="" id="mobileSelect" class="form-control" onchange="filterProduct()">
+              <option value="0">All Brands</option>
+            </select>
+          </div>
+        </span>
+        <span class="user-wrapper">
+          <button id="basket" type="button" class="btn btn-success" data-toggle="modal" data-target="#cart">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span class="total-count"> 0 </span>
+          </button>
+        </span>
+      </div>
+    </header>
+
+    <section class="products-section">
+      <!-- Products container -->
+      <div class="products-container" id="products"></div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+
+  <div class="side-nav modal" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="close" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="cart-row">
+            <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+            <span class="cart-price cart-header cart-column">Giá</span>
+            <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+          </div>
+          <div class="cart-items" id="showItem">
+
+          </div>
+          <div class="cart-total" id="label">
+            <strong class="cart-total-title">Total Price:</strong>
+            <span class="cart-total-price">0</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary clear-cart" onclick="clearCart()">Clear</button> -->
+          <button type="button" class="btn btn-primary order">Order now</button>
+          <button onclick="clearCart()" class="clear-cart btn btn-warning">Clear Cart</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- end modal -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-menu">
+      <nav class="footer-nav-column">
+        <ul class="footer-nav-container">
+          <li class="li-title">SHOP</li>
+          <li><a href="#">Phone</a></li>
+          <li><a href="#">Tablet</a></li>
+          <li><a href="#">Laptop</a></li>
+          <li><a href="#">Accesories</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav-column">
+        <ul class="footer-nav-container">
+          <li class="li-title">COMPANY INFO</li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Our stores</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav-column">
+        <ul class="footer-nav-container">
+          <li class="li-title">SHOPPING INFO</li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy and Security</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav-column subscribe">
+        <ul class="footer-nav-container">
+          <li class="li-title">SUBSCRIBE</li>
+          <p>
+            Take 5% off your first order when you sign up for our newsletter.
+          </p>
+          <span class="email"><input type="email" id="subscribe-input" name="email" placeholder="Email" /><button
+              id="subscribe-btn">Subscribe</button></span>
+        </ul>
+      </nav>
+    </div>
+    <!-- Social media -->
+    <div class="social-media">
+      <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-twitter-square"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-youtube-square"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-pinterest-square"></i></a>
+    </div>
+    <div class="lang-pay">
+      <!-- Language -->
+      <div class="language">
+        <i class="fa-solid fa-globe" title="Choose language"></i>
+      </div>
+      <!-- Paying methods -->
+      <div class="paying-methods">
+        <i class="fa-brands fa-cc-visa"></i>
+        <i class="fa-brands fa-cc-mastercard"></i>
+        <i class="fa-brands fa-cc-paypal"></i>
+        <i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+    <p class="copyright">Copyright &copy; 2022</p>
+  </footer>
+
+
+  <script>
+    function search(event) {
+      var keyword = event.target.value.toLowerCase().trim();
+      var result = [];
+      var arrPrd = getLocalStorage();
+      // console.log(arrPrd);
+      for (var i = 0; i < arrPrd.length; i++) {
+        var prdName = arrPrd[i].name.toLowerCase();
+        if (prdName === keyword || prdName.includes(keyword)) {
+          result.push(arrPrd[i]);
+        }
+      }
+      renderTable(result);
+      addCart();
+      updateCart();
+    }
+  </script>
+
+
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/filter.js"></script>
+  <script src="./js/model/SanPham.js"></script>
+  <script src="./js/model/SanPhamService.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://kit.fontawesome.com/3318035e44.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    max-width: 1200px;
+}
+
+.nav-link {
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.collapse {
+    margin-left: 100px;
+}
+
+.sp-thongbao {
+    color: red;
+    margin-left: 2px; 
+    display: none;
+}
+
+.input-group-append span{
+    padding: 5px 20px;
+    background-color: #c4c4c4;
+    color: black;
+    border: solid 0;
+}
+.input-group-append span:hover{
+    background-color:#888888;
+}
+
+.img_col {
+        width: 90px;
+        height: 90px;
+        display: inline-block;
+        margin-left: 15px;
+        margin-right: 5px;
+}
+
+.img_col img{
+    width: 100%;
+}
+
+.table .setting i {
+    font-size: 24px;
+}

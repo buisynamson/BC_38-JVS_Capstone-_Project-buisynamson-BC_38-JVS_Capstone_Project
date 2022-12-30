@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Product Management</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/QLSP.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Boostrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark" style="background-color:darkgray;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" style="color: white; font-size: 30px;" href="#">Mobile Store</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" style="color:white" href="./index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Service</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">Contact</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input id="inputTK" class="form-control mr-sm-2" type="text" placeholder="Text here..."
+          aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <button id="search" class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+      </form>
+    </div>
+  </nav>
+<!-- END NAVBAR -->
+<!-- Start Section -->
+  <section class="productBoard">
+    <div class="container">
+      <div class=" title display-4 my-4 text-primary font-weight-bold">
+        Products Management</div>
+      <!-- Phan tab menu -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" href="#DanhSachSP" role="tab" data-toggle="tab">Products List</a>
+        </li>
+      </ul>
+      <br />
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!--Danh sách người dùng -->
+        <div role="tabpanel" class="tab-pane in active" id="DanhSachSP">
+          <div class="row">
+            <div class="col-md-8">
+              <!-- BEGIN BUTTOM THÊM MỚI -->
+              <button id="btnThemSP" class="btn btn-success mb-3" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-plus mr-1"></i>
+                Add Product
+              </button>
+              <!-- END BUTTON THÊM MỚI -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class=" form-group d-flex">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-filter" aria-hidden="true"></i></span>
+                <select name="" id="typeOption" class="form-control ml-2" onchange="filterProduct()" >
+                  <option value="0">All Brands</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clear-fix"></div>
+        <div class="tblSanPham" id="tblSanPham">
+          <!-- TABLE SP -->
+          <table class="table table-bordered table-dark" style="text-align: center">
+            <thead class="text-primary">
+              <th>STT</th>
+              <th>Hình Ảnh</th>
+              <th>Tên Sản Phẩm</th>
+              <th>Giá</th>
+              <th>Màn hình</th>
+              <th>Camera sau</th>
+              <th>Camera trước</th>
+              <th>Mô Tả</th>
+              <th>Loại</th>
+              <th>Tùy chỉnh</th>
+            </thead>
+            <tbody id="tblDanhSachSP">
+              <tr></tr>
+            </tbody>
+          </table>
+          <!-- END TABLE -->
+          <!-- ADD LOADING -->
+          <!-- <div class="centerSpinner">
+            <div class="spinner-border text-primary " style="display: block" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div> -->
+          <!-- END LOADING -->
+        </div>
+        <br />
+      </div>
+      <!--KetThuc Tabmenu-->
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Thông tin sản phẩm</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form id="form" role="form">
+              <div class="form-group">
+                <label>ID</label>
+                <input id="id" class="form-control" placeholder="Nhập vào ID: (không bắt buộc)" />
+              </div>
+              <div class="form-group">
+                <label>Tên Sản Phẩm</label>
+                <input id="TenSP" class="form-control" placeholder="Nhập vào tên sản phẩm" />
+             
+                <span class="sp-thongbao font-italic text-danger" id="tbTenSP"></span>
+              </div>
+              <div class="form-group">
+                <label>Giá</label>
+                <input id="GiaSP" class="form-control" type="number" placeholder="Nhập vào giá" />
+              
+                <span class="sp-thongbao font-italic text-danger" id="tbGiaSP"></span>
+              </div>
+              <div class="form-group">
+                <label>Màn Hình</label>
+                <input id="manHinh" class="form-control" placeholder="Nhập vào kích thước" />
+               
+                <span class="sp-thongbao font-italic text-danger" id="tbmanHinh"></span>
+              </div>
+              <div class="form-group">
+                <label>Camera Sau</label>
+                <input id="backCamera" class="form-control" placeholder="Nhập vào kích thước" />
+               
+                <span class="sp-thongbao font-italic text-danger" id="tbBackCamera"></span>
+              </div>
+              <div class="form-group">
+                <label>Camera Trước</label>
+                <input id="frontCamera" class="form-control" placeholder="Nhập vào kích thước" />
+               
+                <span class="sp-thongbao font-italic text-danger" id="tbFrontCamera"></span>
+              </div>
+              <div class="form-group">
+                <label>Hình Ảnh</label>
+                <input id="HinhSP" class="form-control" type="text" placeholder="Nhập vào link" />
+
+                <span class="sp-thongbao font-italic text-danger" id="tbHinhSP"></span>
+              </div>
+              <div class="form-group">
+                <label>Mô Tả</label>
+                <textarea class="form-control" name="" id="MoTa" cols="15" rows="5"
+                  placeholder="Nhập vào mô tả"></textarea>
+
+                <span class="sp-thongbao font-italic text-danger" id="tbMota"></span>
+              </div>
+              <div class="form-group">
+                <label>Loại Máy</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                  </div>
+                  <select class="form-control" id="loai">
+                    <option id="default">Chọn loại máy</option>
+                    <option>Iphone</option>
+                    <option>Samsung</option>
+                    <option>Xiaomi</option>
+                    <option>Oppo</option>
+                  </select>
+
+                  <span class="sp-thongbao font-italic text-danger" id="tbType"></span>
+                </div>
+              </div>
+            </form>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <!-- <button onclick="addProducts()" class="btn btn-success"> -->
+                <!-- Add Product
+                </button> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- link script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/filter.js"></script>
+  <script src="./js/model/SanPham.js"></script>
+  <script src="./js/model/SanPhamService.js"></script>
+  <script src="./js/QLSP.js"></script>
+</body>
+
+</html>
